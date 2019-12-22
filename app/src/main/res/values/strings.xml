@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Blood BAG(BB)</string>
+
+    <string-array name="Divisions">
+        <item>Select division</item>
+        <item>Dhaka</item>
+        <item>Rangpur</item>
+        <item>Chattagram</item>
+        <item>Khulna</item>
+        <item>Sylhet</item>
+        <item>Barisal</item>
+        <item>Mymensingh</item>
+        <item>Rajshahi</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
