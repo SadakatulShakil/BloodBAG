@@ -1,10 +1,12 @@
-package com.example.bloodbagbb;
+package com.example.bloodbagbb.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.bloodbagbb.R;
 
 public class SignUpActivity extends AppCompatActivity {
 
