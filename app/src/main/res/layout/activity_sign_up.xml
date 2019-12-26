@@ -97,12 +97,20 @@
             android:padding="10dp" />
 
         //////////// Spinner ///////////////////
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Note: Please Select your current address"
+            android:textColor="@color/red"
+            android:layout_margin="5dp"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large"
+            android:layout_gravity="center"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/background_edittext"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <Spinner
@@ -111,14 +119,18 @@
                 android:layout_weight="1"
                 android:entries="@array/Divisions"
                 android:paddingTop="10dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/background_edittext"
                 android:paddingBottom="10dp" />
 
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/background_edittext"
                 android:entries="@array/Divisions"
                 android:paddingTop="10dp"
+                android:layout_marginLeft="5dp"
                 android:paddingBottom="10dp" />
 
         </LinearLayout>
@@ -127,7 +139,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/background_edittext"
             android:orientation="horizontal">
 
             <Spinner
@@ -136,6 +147,8 @@
                 android:layout_weight="1"
                 android:entries="@array/Divisions"
                 android:paddingTop="10dp"
+                android:background="@drawable/background_edittext"
+                android:layout_marginRight="5dp"
                 android:paddingBottom="10dp" />
 
             <Spinner
@@ -144,14 +157,17 @@
                 android:layout_weight="1"
                 android:entries="@array/Divisions"
                 android:paddingTop="10dp"
+                android:background="@drawable/background_edittext"
+                android:layout_marginLeft="5dp"
                 android:paddingBottom="10dp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_gravity="center"
             android:background="@drawable/background_edittext"
             android:orientation="horizontal">
 
@@ -159,7 +175,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/Divisions"
-
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp" />
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Blood BAG(BB)</string>
+    <string name="app_name">Blood-BAG</string>
 
     <string-array name="Divisions">
         <item>Select division</item>

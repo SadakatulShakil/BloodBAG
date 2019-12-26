@@ -99,6 +99,7 @@ public class DonorMenuFragment extends Fragment {
                     case R.id.logOut:
                         Intent intent = new Intent(context, SignInActivity.class);
                         startActivity(intent);
+                        getActivity().finish();
                         break;
 
                     default:
