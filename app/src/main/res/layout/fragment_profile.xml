@@ -46,6 +46,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/userName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -88,6 +89,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/donationCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -117,6 +119,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/bloodGroup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -146,6 +149,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/userContact"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -168,6 +172,7 @@
                 </LinearLayout>
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/userProfileImage"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_gravity="center_horizontal"
@@ -191,11 +196,13 @@
         app:cardCornerRadius="8dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/whyDonate"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Why Donate?"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textStyle="bold"
+                android:drawableRight="@drawable/question"
                 android:padding="5dp"
                 android:textColor="@color/red" />
 
@@ -209,11 +216,13 @@
         app:cardCornerRadius="8dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/needToKnow"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Need To Know"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textStyle="bold"
+                android:drawableRight="@drawable/knowledge"
                 android:padding="5dp"
                 android:textColor="@color/red" />
 
