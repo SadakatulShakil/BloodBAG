@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/appBackGround"
     android:orientation="vertical">
 
@@ -51,7 +52,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="40dp"
-                            android:text="Astronist Shakil"
+                            tools:text="Astronist Shakil"
                             android:textStyle="bold"
                             android:textColor="@color/red"
                             android:textSize="20sp" />
@@ -123,7 +124,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="A+"
+                            tools:text="A+"
                             android:textColor="@color/red"
                             android:textStyle="bold"
                             android:textSize="17sp" />
@@ -153,10 +154,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="01767564737"
+                            tools:text="01767564737"
                             android:textColor="@color/red"
                             android:textStyle="bold"
-                            android:textSize="17sp" />
+                            android:textSize="15sp" />
 
                         <TextView
                             android:layout_width="wrap_content"

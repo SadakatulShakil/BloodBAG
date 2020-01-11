@@ -33,11 +33,11 @@ tools:context=".Fragment.DonationHistoryFragment">
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
+        android:minWidth="0dp"
         app:itemIconTint="@color/red"
         app:itemTextColor="@color/red"
-        android:layout_alignParentBottom="true"
-        android:minWidth="0dp"
         app:menu="@menu/bottom_nav_menu" />
 
 </RelativeLayout>

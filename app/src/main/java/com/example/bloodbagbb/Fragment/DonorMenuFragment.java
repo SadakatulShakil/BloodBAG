@@ -23,6 +23,8 @@ import com.example.bloodbagbb.Activity.SignInActivity;
 import com.example.bloodbagbb.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -74,7 +76,6 @@ public class DonorMenuFragment extends Fragment {
                 .replace(R.id.fragmentContainer, new ProfileFragment())
                 .commit();
 
-
     }
 
     private void initNavigationViewDrawer() {
@@ -97,9 +98,10 @@ public class DonorMenuFragment extends Fragment {
                         Toast.makeText(context,"About Under Construction be Happy!", Toast.LENGTH_LONG).show();
                         break;
                     case R.id.logOut:
+                        FirebaseAuth.getInstance().signOut();
+                        getActivity().finish();
                         Intent intent = new Intent(context, SignInActivity.class);
                         startActivity(intent);
-                        getActivity().finish();
                         break;
 
                     default:
@@ -144,6 +146,7 @@ public class DonorMenuFragment extends Fragment {
             }
         });
     }
+
 
     private void initView(View view) {
 

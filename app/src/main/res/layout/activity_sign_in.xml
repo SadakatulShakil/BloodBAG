@@ -7,6 +7,17 @@
     android:background="@color/appBackGround"
     tools:context=".Activity.SignInActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/arrow"
+        app:layout_constraintTop_toTopOf="parent" />
     <ImageView
         android:id="@+id/arrow"
         android:layout_width="wrap_content"
@@ -85,7 +96,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/userEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -95,7 +106,7 @@
                 android:drawablePadding="20dp"
                 android:imeOptions="actionNext"
                 android:hint="Enter your email"
-                android:inputType="textPassword" />
+                android:inputType="textAutoComplete" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -108,7 +119,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
 
             <EditText
-                android:id="@+id/confirmPassET"
+                android:id="@+id/userPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
