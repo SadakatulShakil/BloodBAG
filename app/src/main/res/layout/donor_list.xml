@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/appBackGround">
 
     <androidx.cardview.widget.CardView
@@ -25,6 +25,7 @@
             <RelativeLayout
                 android:id="@+id/one"
                 android:layout_width="wrap_content"
+                android:gravity="center"
                 android:layout_height="match_parent">
 
                 <ImageView
@@ -34,6 +35,7 @@
                     android:src="@drawable/blood_drop" />
 
                 <TextView
+                    android:id="@+id/bloodSample"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -66,6 +68,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/donorName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Astronist Shakil "
@@ -89,9 +92,34 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/donorContact"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="01767564737 "
+                        android:paddingLeft="5dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/red" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Area :"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@color/red"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/donorArea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jigatala "
                         android:paddingLeft="5dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="@color/red" />
