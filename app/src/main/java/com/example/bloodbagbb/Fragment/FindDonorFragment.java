@@ -27,6 +27,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -83,11 +84,42 @@ public class FindDonorFragment extends Fragment {
             }
         });
 
+        bloodSearchBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findDesireDistrictDonor();
+            }
+        });
+
         bloodSearchBox.setThreshold(1);
         bloodSearchBox.setAdapter(new ArrayAdapter<>(context,android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.districts)));
 
 
+    }
+
+    private void findDesireDistrictDonor() {
+        DatabaseReference districtRef = FirebaseDatabase.getInstance().getReference("donor");
+
+        Query query = districtRef.orderByChild("district").equalTo(bloodSearchBox.getText().toString().trim());
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userInfoList.clear();
+                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                    User user = userSnapshot.getValue(User.class);
+
+                    userInfoList.add(user);
+                }
+                appUserAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void openFilteredGroup() {
@@ -125,7 +157,27 @@ public class FindDonorFragment extends Fragment {
             alertDialog.dismiss();
             filterBlood.setText("A+");
             //do search
-                if(userInfoList.get(0).getBloodGroup().equals("A+")){}
+                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+
+                Query query = filterRef.orderByChild("bloodGroup").equalTo("A+");
+
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        userInfoList.clear();
+                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                            User user = userSnapshot.getValue(User.class);
+
+                            userInfoList.add(user);
+                        }
+                        appUserAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
         aNegative.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +186,27 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("A-");
                 //do search
+                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+
+                Query query = filterRef.orderByChild("bloodGroup").equalTo("A-");
+
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        userInfoList.clear();
+                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                            User user = userSnapshot.getValue(User.class);
+
+                            userInfoList.add(user);
+                        }
+                        appUserAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
         bPositive.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +215,27 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("B+");
                 //do search
+                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+
+                Query query = filterRef.orderByChild("bloodGroup").equalTo("B+");
+
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        userInfoList.clear();
+                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                            User user = userSnapshot.getValue(User.class);
+
+                            userInfoList.add(user);
+                        }
+                        appUserAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
         bNegative.setOnClickListener(new View.OnClickListener() {
@@ -150,6 +244,27 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("B-");
                 //do search
+                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+
+                Query query = filterRef.orderByChild("bloodGroup").equalTo("B-");
+
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        userInfoList.clear();
+                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                            User user = userSnapshot.getValue(User.class);
+
+                            userInfoList.add(user);
+                        }
+                        appUserAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
         oPositive.setOnClickListener(new View.OnClickListener() {
@@ -158,6 +273,27 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("O+");
                 //do search
+                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+
+                Query query = filterRef.orderByChild("bloodGroup").equalTo("O+");
+
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        userInfoList.clear();
+                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                            User user = userSnapshot.getValue(User.class);
+
+                            userInfoList.add(user);
+                        }
+                        appUserAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
         oNegative.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +302,27 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("O-");
                 //do search
+                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+
+                Query query = filterRef.orderByChild("bloodGroup").equalTo("O-");
+
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        userInfoList.clear();
+                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                            User user = userSnapshot.getValue(User.class);
+
+                            userInfoList.add(user);
+                        }
+                        appUserAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
         abPositive.setOnClickListener(new View.OnClickListener() {
@@ -174,6 +331,27 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("AB+");
                 //do search
+                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+
+                Query query = filterRef.orderByChild("bloodGroup").equalTo("AB+");
+
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        userInfoList.clear();
+                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                            User user = userSnapshot.getValue(User.class);
+
+                            userInfoList.add(user);
+                        }
+                        appUserAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
         abNegative.setOnClickListener(new View.OnClickListener() {
@@ -182,6 +360,27 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("AB-");
                 //do search
+                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+
+                Query query = filterRef.orderByChild("bloodGroup").equalTo("AB-");
+
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        userInfoList.clear();
+                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                            User user = userSnapshot.getValue(User.class);
+
+                            userInfoList.add(user);
+                        }
+                        appUserAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
 
