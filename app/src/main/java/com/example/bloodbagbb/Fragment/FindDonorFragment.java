@@ -1,8 +1,10 @@
 package com.example.bloodbagbb.Fragment;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +36,9 @@ import java.util.ArrayList;
  */
 public class FindDonorFragment extends Fragment {
 
+    public static final String TAG ="FindDonorFragment";
     private AutoCompleteTextView bloodSearchBox;
-    private TextView aPositive, aNegative, bPositive, bNegative, oPositive, oNegative, abPositive, abNegative;
+    private TextView filterBlood;
     private Context context;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
@@ -73,12 +76,119 @@ public class FindDonorFragment extends Fragment {
 
         RetrievedAllDonorData();
 
+        filterBlood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFilteredGroup();
+            }
+        });
+
         bloodSearchBox.setThreshold(1);
         bloodSearchBox.setAdapter(new ArrayAdapter<>(context,android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.districts)));
 
 
     }
+
+    private void openFilteredGroup() {
+        Log.d(TAG, "openFilteredGroup: start");
+        final AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        View dialogView = getLayoutInflater().inflate(R.layout.filter_blood_group, null);
+
+        final TextView  aPositive, aNegative, bPositive, bNegative, oPositive, oNegative, abPositive, abNegative;
+        final TextView cancelBt = dialogView.findViewById(R.id.btCancel);
+
+        aPositive = dialogView.findViewById(R.id.aPossitive);
+        aNegative = dialogView.findViewById(R.id.aNegetive);
+        bPositive = dialogView.findViewById(R.id.bPossitive);
+        bNegative = dialogView.findViewById(R.id.bNegetive);
+        oPositive = dialogView.findViewById(R.id.oPossitive);
+        oNegative = dialogView.findViewById(R.id.oNegetive);
+        abPositive = dialogView.findViewById(R.id.abPossitive);
+        abNegative = dialogView.findViewById(R.id.abNegetive);
+
+        alert.setView(dialogView);
+
+        final AlertDialog alertDialog = alert.create();
+        alertDialog.setCanceledOnTouchOutside(true);
+
+        cancelBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+        aPositive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            alertDialog.dismiss();
+            filterBlood.setText("A+");
+            //do search
+                if(userInfoList.get(0).getBloodGroup().equals("A+")){}
+            }
+        });
+        aNegative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                filterBlood.setText("A-");
+                //do search
+            }
+        });
+        bPositive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                filterBlood.setText("B+");
+                //do search
+            }
+        });
+        bNegative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                filterBlood.setText("B-");
+                //do search
+            }
+        });
+        oPositive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                filterBlood.setText("O+");
+                //do search
+            }
+        });
+        oNegative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                filterBlood.setText("O-");
+                //do search
+            }
+        });
+        abPositive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                filterBlood.setText("AB+");
+                //do search
+            }
+        });
+        abNegative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                filterBlood.setText("AB-");
+                //do search
+            }
+        });
+
+        alertDialog.show();
+
+    }
+
 
     private void RetrievedAllDonorData() {
         donorRef = FirebaseDatabase.getInstance().getReference("donor");
@@ -107,13 +217,6 @@ public class FindDonorFragment extends Fragment {
 
         bloodSearchBox = view.findViewById(R.id.searchBox);
         recyclerView = view.findViewById(R.id.donorRecycleView);
-        aPositive = view.findViewById(R.id.aPossitive);
-        aNegative = view.findViewById(R.id.aNegetive);
-        bPositive = view.findViewById(R.id.bPossitive);
-        bNegative = view.findViewById(R.id.bNegetive);
-        oPositive = view.findViewById(R.id.oPossitive);
-        oNegative = view.findViewById(R.id.oNegetive);
-        abPositive = view.findViewById(R.id.abPossitive);
-        abNegative = view.findViewById(R.id.abNegetive);
+        filterBlood = view.findViewById(R.id.filterBox);
     }
 }

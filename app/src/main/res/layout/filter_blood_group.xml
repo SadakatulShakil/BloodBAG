@@ -159,14 +159,13 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btCancle"
+    <TextView
+        android:id="@+id/btCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:background="@drawable/background_btn"
-        android:elevation="8dp"
-        android:text="Cancle"
+        android:background="@color/appBackGround"
+        android:text="Cancel"
         android:paddingBottom="5dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/textColor"
