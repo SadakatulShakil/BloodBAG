@@ -47,6 +47,8 @@ public class FindDonorFragment extends Fragment {
     private ArrayList<User> userInfoList;
     private DonorAdapter appUserAdapter;
     DatabaseReference donorRef;
+    private String bloodGroup;
+    private String district;
     public FindDonorFragment() {
         // Required empty public constructor
     }
@@ -99,9 +101,24 @@ public class FindDonorFragment extends Fragment {
     }
 
     private void findDesireDistrictDonor() {
+
+        bloodGroup = filterBlood.getText().toString().trim();
+
+        district = bloodSearchBox.getText().toString().trim();
+        if(bloodGroup.equals("filter")){
+            searchByDistrict(district);
+        }
+        else {
+            searchByDistrict(district,bloodGroup);
+        }
+
+    }
+
+    private void searchByDistrict(String district, final String bloodGroup) {
+
         DatabaseReference districtRef = FirebaseDatabase.getInstance().getReference("donor");
 
-        Query query = districtRef.orderByChild("district").equalTo(bloodSearchBox.getText().toString().trim());
+        Query query = districtRef.orderByChild("district").equalTo(district);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -109,7 +126,33 @@ public class FindDonorFragment extends Fragment {
                 userInfoList.clear();
                 for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
                     User user = userSnapshot.getValue(User.class);
+                    if(user.getBloodGroup().equals(bloodGroup)){
+                        userInfoList.add(user);
+                    }
+                }
+                appUserAdapter.notifyDataSetChanged();
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void searchByDistrict(String district) {
+
+        DatabaseReference districtRef = FirebaseDatabase.getInstance().getReference("donor");
+
+        Query query = districtRef.orderByChild("district").equalTo(district);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userInfoList.clear();
+                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                    User user = userSnapshot.getValue(User.class);
                     userInfoList.add(user);
                 }
                 appUserAdapter.notifyDataSetChanged();
@@ -120,7 +163,9 @@ public class FindDonorFragment extends Fragment {
 
             }
         });
+
     }
+
 
     private void openFilteredGroup() {
         Log.d(TAG, "openFilteredGroup: start");
@@ -156,28 +201,16 @@ public class FindDonorFragment extends Fragment {
             public void onClick(View v) {
             alertDialog.dismiss();
             filterBlood.setText("A+");
-            //do search
-                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+             bloodGroup = filterBlood.getText().toString().trim();
 
-                Query query = filterRef.orderByChild("bloodGroup").equalTo("A+");
+             district = bloodSearchBox.getText().toString().trim();
+            if (district.isEmpty()){
+                searchByBloodGroup(bloodGroup);
 
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        userInfoList.clear();
-                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
-                            User user = userSnapshot.getValue(User.class);
+            }else {
+                searchByBloodGroup(district,bloodGroup);
+            }
 
-                            userInfoList.add(user);
-                        }
-                        appUserAdapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
             }
         });
         aNegative.setOnClickListener(new View.OnClickListener() {
@@ -186,27 +219,16 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("A-");
                 //do search
-                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+                String bloodGroup = filterBlood.getText().toString().trim();
 
-                Query query = filterRef.orderByChild("bloodGroup").equalTo("A-");
+                String district = bloodSearchBox.getText().toString().trim();
+                if (district.isEmpty()){
+                    searchByBloodGroup(bloodGroup);
 
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        userInfoList.clear();
-                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
-                            User user = userSnapshot.getValue(User.class);
+                }else {
+                    searchByBloodGroup(district,bloodGroup);
+                }
 
-                            userInfoList.add(user);
-                        }
-                        appUserAdapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
             }
         });
         bPositive.setOnClickListener(new View.OnClickListener() {
@@ -215,27 +237,16 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("B+");
                 //do search
-                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+                 bloodGroup = filterBlood.getText().toString().trim();
 
-                Query query = filterRef.orderByChild("bloodGroup").equalTo("B+");
+                 district = bloodSearchBox.getText().toString().trim();
+                if (district.isEmpty()){
+                    searchByBloodGroup(bloodGroup);
 
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        userInfoList.clear();
-                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
-                            User user = userSnapshot.getValue(User.class);
+                }else {
+                    searchByBloodGroup(district,bloodGroup);
+                }
 
-                            userInfoList.add(user);
-                        }
-                        appUserAdapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
             }
         });
         bNegative.setOnClickListener(new View.OnClickListener() {
@@ -244,27 +255,16 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("B-");
                 //do search
-                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+                 bloodGroup = filterBlood.getText().toString().trim();
 
-                Query query = filterRef.orderByChild("bloodGroup").equalTo("B-");
+                 district = bloodSearchBox.getText().toString().trim();
+                if (district.isEmpty()){
+                    searchByBloodGroup(bloodGroup);
 
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        userInfoList.clear();
-                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
-                            User user = userSnapshot.getValue(User.class);
+                }else {
+                    searchByBloodGroup(district,bloodGroup);
+                }
 
-                            userInfoList.add(user);
-                        }
-                        appUserAdapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
             }
         });
         oPositive.setOnClickListener(new View.OnClickListener() {
@@ -273,27 +273,16 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("O+");
                 //do search
-                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+                 bloodGroup = filterBlood.getText().toString().trim();
 
-                Query query = filterRef.orderByChild("bloodGroup").equalTo("O+");
+                 district = bloodSearchBox.getText().toString().trim();
+                if (district.isEmpty()){
+                    searchByBloodGroup(bloodGroup);
 
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        userInfoList.clear();
-                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
-                            User user = userSnapshot.getValue(User.class);
+                }else {
+                    searchByBloodGroup(district,bloodGroup);
+                }
 
-                            userInfoList.add(user);
-                        }
-                        appUserAdapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
             }
         });
         oNegative.setOnClickListener(new View.OnClickListener() {
@@ -302,27 +291,16 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("O-");
                 //do search
-                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+                 bloodGroup = filterBlood.getText().toString().trim();
 
-                Query query = filterRef.orderByChild("bloodGroup").equalTo("O-");
+                 district = bloodSearchBox.getText().toString().trim();
+                if (district.isEmpty()){
+                    searchByBloodGroup(bloodGroup);
 
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        userInfoList.clear();
-                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
-                            User user = userSnapshot.getValue(User.class);
+                }else {
+                    searchByBloodGroup(district,bloodGroup);
+                }
 
-                            userInfoList.add(user);
-                        }
-                        appUserAdapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
             }
         });
         abPositive.setOnClickListener(new View.OnClickListener() {
@@ -331,27 +309,16 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("AB+");
                 //do search
-                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+                 bloodGroup = filterBlood.getText().toString().trim();
 
-                Query query = filterRef.orderByChild("bloodGroup").equalTo("AB+");
+                 district = bloodSearchBox.getText().toString().trim();
+                if (district.isEmpty()){
+                    searchByBloodGroup(bloodGroup);
 
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        userInfoList.clear();
-                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
-                            User user = userSnapshot.getValue(User.class);
+                }else {
+                    searchByBloodGroup(district,bloodGroup);
+                }
 
-                            userInfoList.add(user);
-                        }
-                        appUserAdapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
             }
         });
         abNegative.setOnClickListener(new View.OnClickListener() {
@@ -360,27 +327,16 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("AB-");
                 //do search
-                DatabaseReference filterRef = FirebaseDatabase.getInstance().getReference("donor");
+                 bloodGroup = filterBlood.getText().toString().trim();
 
-                Query query = filterRef.orderByChild("bloodGroup").equalTo("AB-");
+                 district = bloodSearchBox.getText().toString().trim();
+                if (district.isEmpty()){
+                    searchByBloodGroup(bloodGroup);
 
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        userInfoList.clear();
-                        for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
-                            User user = userSnapshot.getValue(User.class);
+                }else {
+                    searchByBloodGroup(district,bloodGroup);
+                }
 
-                            userInfoList.add(user);
-                        }
-                        appUserAdapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
             }
         });
 
@@ -388,6 +344,59 @@ public class FindDonorFragment extends Fragment {
 
     }
 
+    private void searchByBloodGroup(final String district, String bloodGroup) {
+        //do search
+        DatabaseReference bloodRef = FirebaseDatabase.getInstance().getReference("donor");
+
+        Query query = bloodRef.orderByChild("bloodGroup").equalTo(bloodGroup);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userInfoList.clear();
+                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                    User user = userSnapshot.getValue(User.class);
+                    if(user.getDistrict().equals(district)){
+                        userInfoList.add(user);
+                    }
+
+                }
+                appUserAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void searchByBloodGroup(String bloodGroup) {
+
+        //do search
+        DatabaseReference bloodRef = FirebaseDatabase.getInstance().getReference("donor");
+
+        Query query = bloodRef.orderByChild("bloodGroup").equalTo(bloodGroup);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userInfoList.clear();
+                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                    User user = userSnapshot.getValue(User.class);
+                    userInfoList.add(user);
+                }
+                appUserAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 
     private void RetrievedAllDonorData() {
         donorRef = FirebaseDatabase.getInstance().getReference("donor");

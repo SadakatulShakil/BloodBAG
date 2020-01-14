@@ -1,142 +1,142 @@
- <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/backgreoundtext"
+    tools:context=".Fragment.ForRequestFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:id="@+id/datePickerET1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_edittext"
+        android:clickable="true"
+        android:drawableRight="@drawable/calender"
+        android:drawablePadding="10dp"
+        android:focusable="false"
+        android:hint="Start Date"
+        android:importantForAutofill="no"
+        android:padding="5dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/red"
+        android:textColorHint="@color/red"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/demo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="To"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/datePickerET2"
+        app:layout_constraintStart_toEndOf="@+id/datePickerET1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/datePickerET2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_edittext"
+        android:clickable="true"
+        android:drawableRight="@drawable/calender"
+        android:drawablePadding="10dp"
+        android:focusable="false"
+        android:hint="End Date"
+        android:importantForAutofill="no"
+        android:padding="5dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/red"
+        android:textColorHint="@color/red"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/demo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="8dp"
+        android:text="Expected Blood Group :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePickerET1" />
+
+
+    <AutoCompleteTextView
+        android:id="@+id/userBloodGroup"
+        android:layout_width="158dp"
+        android:layout_height="27dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_edittext"
+        android:drawableLeft="@drawable/drop"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="(e.g. A+/AB-)"
+        android:imeOptions="actionNext"
+        android:inputType="textAutoComplete"
+        app:layout_constraintStart_toEndOf="@+id/demo2"
+        app:layout_constraintTop_toBottomOf="@+id/datePickerET1" />
+
+    <TextView
+        android:id="@+id/demo3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="8dp"
+        android:text="Location / Description :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/demo2" />
+
+    <EditText
+        android:id="@+id/locationEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_edittext"
+        android:hint="Enter the location"
+        android:padding="10dp"
+        android:inputType="textAutoComplete"
+        android:imeOptions="actionGo"
+        app:layout_constraintTop_toBottomOf="@+id/demo3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:background="@color/appBackGround"
-        tools:context=".Fragment.ForRequestFragment">
+        android:paddingBottom="5dp"
+        android:text="Post"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationEt" />
 
-        <!-- TODO: Update blank fragment layout -->
-        <EditText
-            android:id="@+id/datePickerET1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:clickable="true"
-            android:focusable="false"
-            android:layout_margin="10dp"
-            android:hint="Star Date"
-            android:padding="5dp"
-            android:textColorHint="@color/red"
-            android:textColor="@color/red"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:importantForAutofill="no"
-            android:textStyle="bold"
-            android:background="@drawable/background_edittext"
-            android:drawableRight="@drawable/calender"
-            android:drawablePadding="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/appBackGround"
+        android:paddingBottom="5dp"
+        android:text="Cancle"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationEt" />
 
-        <TextView
-            android:id="@+id/demo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="To"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/red"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/datePickerET2"
-            app:layout_constraintStart_toEndOf="@+id/datePickerET1"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/datePickerET2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:background="@drawable/background_edittext"
-            android:clickable="true"
-            android:textColor="@color/red"
-            android:textColorHint="@color/red"
-            android:drawableRight="@drawable/calender"
-            android:drawablePadding="10dp"
-            android:focusable="false"
-            android:hint="End Date"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:importantForAutofill="no"
-            android:padding="5dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/demo2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="8dp"
-            android:text="Expected Blood Group :"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/red"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/datePickerET1" />
-
-
-         <AutoCompleteTextView
-             android:id="@+id/userBloodGroup"
-             android:layout_width="158dp"
-             android:layout_height="27dp"
-             android:background="@drawable/background_edittext"
-             android:drawableLeft="@drawable/drop"
-             android:drawablePadding="10dp"
-             android:ems="10"
-             android:hint="(e.g. A+/AB-)"
-             android:imeOptions="actionNext"
-             android:inputType="textAutoComplete"
-             android:padding="5dp"
-             app:layout_constraintBottom_toBottomOf="@+id/demo2"
-             app:layout_constraintEnd_toEndOf="parent"
-             app:layout_constraintHorizontal_bias="0.800"
-             app:layout_constraintStart_toStartOf="parent"
-             app:layout_constraintTop_toTopOf="parent"
-             app:layout_constraintVertical_bias="1.05" />
-
-         <TextView
-            android:id="@+id/demo3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="8dp"
-            android:text="Location :"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/red"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/demo2" />
-
-        <EditText
-            android:id="@+id/locationEt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter the location"
-            android:background="@drawable/background_edittext"
-            android:padding="10dp"
-            android:layout_margin="10dp"
-            android:textColorHint="@color/red"
-            app:layout_constraintTop_toBottomOf="@+id/demo3"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/background_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="Post"
-            android:textColor="@color/red"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/locationEt" />
-
-     <Button
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_margin="10dp"
-         android:background="@drawable/background_btn"
-         android:text="Cancle"
-         android:textColor="@color/red"
-         android:textStyle="bold"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toBottomOf="@+id/locationEt" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
