@@ -7,13 +7,25 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import com.example.bloodbagbb.Model.BloodRequest;
+import com.example.bloodbagbb.Model.User;
 import com.example.bloodbagbb.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,7 +33,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class ForRequestFragment extends Fragment {
 
     private  Context context;
-    private FloatingActionButton addFab;
+    private FloatingActionButton postFab;
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference requestRef;
+    private BloodRequest bloodRequest;
+    private FirebaseUser user;
     public ForRequestFragment() {
         // Required empty public constructor
     }
@@ -41,6 +57,7 @@ public class ForRequestFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        final FragmentManager fm = (getActivity()).getSupportFragmentManager();
 
         initViews(view);
         ClickEvents();
@@ -48,22 +65,141 @@ public class ForRequestFragment extends Fragment {
 
     private void ClickEvents() {
 
-        addFab.setOnClickListener(new View.OnClickListener() {
+        postFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openPostRequestDialog();
+                //openPostRequestDialog();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayoutID, new RequestFormFragment())
+                        .commit();
             }
         });
     }
 
-    private void openPostRequestDialog() {
+    /*private void openPostRequestDialog() {
 
         final AlertDialog.Builder alert = new AlertDialog.Builder(context);
         View dialogView = getLayoutInflater().inflate(R.layout.post_request_dialog, null);
 
+        final EditText startDate, endDate, userArea, description, number;
+        final AutoCompleteTextView expectedBG, userDistrict;
+        final TextView btCancel, btPost;
+
+        startDate = dialogView.findViewById(R.id.datePickerET1);
+        endDate = dialogView.findViewById(R.id.datePickerET2);
+        expectedBG = dialogView.findViewById(R.id.userBloodGroup);
+        userDistrict = dialogView.findViewById(R.id.locationEt);
+        userArea = dialogView.findViewById(R.id.areaET);
+        description = dialogView.findViewById(R.id.descriptionET);
+        btCancel = dialogView.findViewById(R.id.cancelTV);
+        btPost = dialogView.findViewById(R.id.postTV);
+        number = dialogView.findViewById(R.id.contactET);
+
+        startDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        endDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        expectedBG.setThreshold(1);
+        expectedBG.setAdapter(new ArrayAdapter<>(context,android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.bloodGroup)));
+
+        userDistrict.setThreshold(1);
+        userDistrict.setAdapter(new ArrayAdapter<>(context,android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.districts)));
+
+        alert.setView(dialogView);
+
+        final AlertDialog alertDialog = alert.create();
+        alertDialog.setCanceledOnTouchOutside(true);
+        btCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+        btPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String date1 = startDate.getText().toString().trim();
+                String date2 = endDate.getText().toString().trim();
+                String bGroup = expectedBG.getText().toString().trim();
+                String contact = number.getText().toString().trim();
+                String district = userDistrict.getText().toString().trim();
+                String area = userArea.getText().toString().trim();
+                String reason = description.getText().toString().trim();
+
+                if (date1.isEmpty()) {
+                    startDate.setError("Start date is required!");
+                    startDate.requestFocus();
+                    return;
+                }
+
+                if (date2.isEmpty()) {
+                    endDate.setError("End date is required!");
+                    endDate.requestFocus();
+                    return;
+                }
+                if (bGroup.isEmpty()) {
+                    expectedBG.setError("start date is required!");
+                    expectedBG.requestFocus();
+                    return;
+                }
+                if (district.isEmpty()) {
+                    userDistrict.setError("start date is required!");
+                    userDistrict.requestFocus();
+                    return;
+                }
+                if (area.isEmpty()) {
+                    userArea.setError("start date is required!");
+                    userArea.requestFocus();
+                    return;
+                }
+                if(reason.isEmpty()){
+                    description.setError("Give a reason is required!");
+                    description.requestFocus();
+                    return;
+                }
+                if(contact.isEmpty()){
+                    number.setError("contact is required!");
+                    number.requestFocus();
+                    return;
+                }
+
+                storeRequestData(date1, date2, bGroup, contact, district, area, reason);
+            }
+        });
+
+        alertDialog.show();
     }
 
+    private void storeRequestData(final String date1, final String date2,
+                                  final String bGroup, final String contact, final String district,
+                                  final String area, final String reason) {
+
+        requestRef = FirebaseDatabase.getInstance().getReference("requests");
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = user.getUid();
+        String pushId = requestRef.push().getKey();
+        String postingTime = "12.45 pm";
+        String type ="Emergency";
+        bloodRequest = new BloodRequest(userId, pushId, date1, date2, bGroup, contact, district, area, type, reason, postingTime);
+
+    }*/
+
+
     private void initViews(View view) {
-        addFab = view.findViewById(R.id.addFAB);
+        postFab = view.findViewById(R.id.goToPostFAB);
     }
 }

@@ -20,11 +20,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bloodbagbb.Activity.SignInActivity;
+import com.example.bloodbagbb.Model.Utils;
 import com.example.bloodbagbb.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import static com.example.bloodbagbb.Model.Utils.bucketFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,6 +71,12 @@ public class DonorMenuFragment extends Fragment {
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
+        /*if(bucketFragment.equals("empty")){
+            initBottomNavigation();
+        }
+        else{
+            initBottomNavigation(bucketFragment);
+        }*/
         initBottomNavigation();
          initNavigationViewDrawer();
 
@@ -75,6 +84,31 @@ public class DonorMenuFragment extends Fragment {
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, new ProfileFragment())
                 .commit();
+
+    }
+
+    private void initBottomNavigation(final String bucketFragment) {
+
+
+                Fragment selectedFragment = null;
+                if(bucketFragment.equals("profile")){
+                    selectedFragment =new ProfileFragment();
+                }
+                else if(bucketFragment.equals("findDonor")){
+                    selectedFragment =new FindDonorFragment();
+                }
+                else if(bucketFragment.equals("request")){
+                    selectedFragment =new ForRequestFragment();
+                }
+                else if(bucketFragment.equals("history")){
+                    selectedFragment =new DonationHistoryFragment();
+                }
+                    FragmentManager fm = getChildFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.replace(R.id.fragmentContainer,selectedFragment)
+                            .commit();
+
+
 
     }
 
@@ -122,15 +156,19 @@ public class DonorMenuFragment extends Fragment {
                 switch(item.getItemId()){
                     case R.id.profileFm:
                         selectedFragment =new ProfileFragment();
+                        bucketFragment = "profile";
                         break;
                     case R.id.donorFindFm:
                         selectedFragment =new FindDonorFragment();
+                        bucketFragment = "findDonor";
                         break;
                     case R.id.requestFm:
                         selectedFragment =new ForRequestFragment();
+                        bucketFragment = "request";
                         break;
                     case R.id.historyFm:
                         selectedFragment =new DonationHistoryFragment();
+                        bucketFragment = "history";
                         break;
 
                     default:

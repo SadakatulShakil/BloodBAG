@@ -2,49 +2,80 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:background="@drawable/backgreoundtext"
     tools:context=".Fragment.ForRequestFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
+    <TextView
+        android:id="@+id/postTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/appBackGround"
+        android:paddingBottom="5dp"
+        android:text="Post"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cancelTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/appBackGround"
+        android:paddingBottom="5dp"
+        android:text="Cancle"
+        android:drawablePadding="8dp"
+        android:drawableLeft="@drawable/back"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/red"
+        android:layout_margin="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/cancelTV"/>
+
     <RadioGroup
         android:id="@+id/typeOfBloodNeed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/view1">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center">
 
             <RadioButton
                 android:id="@+id/radioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
                 android:buttonTint="@color/green"
-                android:textColor="@color/red"
-                android:text="Emergency" />
+                android:padding="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="Emergency"
+                android:textColor="@color/red" />
 
             <RadioButton
                 android:id="@+id/radioButton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:checked="true"
                 android:buttonTint="@color/green"
-                android:textColor="@color/red"
-                android:text="Regular" />
-        </LinearLayout>
+                android:checked="true"
+                android:padding="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="Regular"
+                android:textColor="@color/red" />
 
     </RadioGroup>
 
@@ -140,6 +171,30 @@
         app:layout_constraintTop_toBottomOf="@+id/datePickerET2" />
 
     <TextView
+        android:id="@+id/demo6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="8dp"
+        android:text="Contact :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/demo2"/>
+
+    <EditText
+        android:id="@+id/contactET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_edittext"
+        android:hint="Enter the Contact"
+        android:padding="10dp"
+        android:inputType="textAutoComplete"
+        android:imeOptions="actionNext"
+        app:layout_constraintTop_toBottomOf="@+id/demo6"/>
+
+    <TextView
         android:id="@+id/demo3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -149,7 +204,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="@color/red"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/demo2" />
+        app:layout_constraintTop_toBottomOf="@+id/contactET" />
 
     <AutoCompleteTextView
         android:id="@+id/locationEt"
@@ -211,30 +266,5 @@
         android:imeOptions="actionGo"
         app:layout_constraintTop_toBottomOf="@+id/demo5"/>
 
-    <TextView
-        android:id="@+id/postTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@color/appBackGround"
-        android:paddingBottom="5dp"
-        android:text="Post"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/red"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionET" />
-
-    <TextView
-        android:id="@+id/cancelTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@color/appBackGround"
-        android:paddingBottom="5dp"
-        android:text="Cancle"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/red"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionET" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
